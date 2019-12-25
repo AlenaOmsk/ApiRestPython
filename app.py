@@ -69,3 +69,15 @@ def UpdateUser(id):
 
     db.session.commit()
     return result_schema.jsonify(result)        
+#Delete user by ID
+@app.route("/user/<id>", methods=['DELETE'])
+def DeleteUser(id):
+    result = Result.query.get(id)
+
+    db.session.delete(result)
+    db.session.commit()
+
+    return result_schema.jsonify(result)
+
+if __name__ == '__main__':
+    app.run()
