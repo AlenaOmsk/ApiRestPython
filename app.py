@@ -42,3 +42,9 @@ def AddUser():
     db.session.commit()
 
     return result_schema.jsonify(new_user)
+#Get all
+@app.route("/users", methods=['GET'])
+def GetUsers():
+    all_results = Result.query.all()
+    results = results_schema.dump(all_results)
+    return jsonify(results)
