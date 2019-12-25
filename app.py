@@ -29,3 +29,16 @@ class Result(db.Model):
 
 result_schema = ResultSchema()
 results_schema = ResultSchema(many=True)
+
+#Insert
+@app.route("/user", methods=['POST'])
+def AddUser():
+    name = request.json['name']
+    email = request.json['email']
+    password = request.json['password']
+
+    new_user = Result(name, email, password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return result_schema.jsonify(new_user)
