@@ -53,3 +53,19 @@ def GetUsers():
 def GetUserByID(id):
     result = Result.query.get(id)
     return result_schema.jsonify(result)
+
+#Update user by ID
+@app.route("/user/<id>", methods=['PUT'])
+def UpdateUser(id):
+    result = Result.query.get(id)
+
+    name = request.json['name']
+    email = request.json['email']
+    password = request.json['password']
+
+    result.name = name
+    result.email = email
+    result.password = password
+
+    db.session.commit()
+    return result_schema.jsonify(result)        
