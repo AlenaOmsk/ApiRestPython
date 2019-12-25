@@ -22,3 +22,10 @@ class Result(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)   
+
+    class ResultSchema(ma.Schema):
+    class Meta:
+        fields = ('id','name','email')
+
+result_schema = ResultSchema()
+results_schema = ResultSchema(many=True)
