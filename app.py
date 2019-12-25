@@ -48,3 +48,8 @@ def GetUsers():
     all_results = Result.query.all()
     results = results_schema.dump(all_results)
     return jsonify(results)
+#Get by id
+@app.route("/user/<id>", methods=['GET'])
+def GetUserByID(id):
+    result = Result.query.get(id)
+    return result_schema.jsonify(result)
